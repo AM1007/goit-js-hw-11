@@ -1,4 +1,4 @@
-import './css/styles.css';
+
 import { FetchImagesService } from './js/fetchImagesService';
 import { refs } from './js/getRefs';
 import { LoadMoreBtn } from './js/load-more-btn';
@@ -37,7 +37,7 @@ function fetchImages() {
     loadMoreBtn.disabled();
     fetchImagesService.fetchImages().then(({data}) => {
         if (data.total === 0) {
-            Notify.info(`Sorry, there are no images matching your search query: ${fetchImagesService.searchQuery}. Please try again.`);
+            Notify.failure(`Sorry, there are no images matching your search query: ${fetchImagesService.searchQuery}. Please try again.`);
             loadMoreBtn.hide();
             return;
         }
@@ -64,7 +64,8 @@ function appendImagesMarkup(data) {
     refs.containerDiv.insertAdjacentHTML('beforeend', makeImageMarkup(data));
 }
 
-//  Плавная прокрутка страницы после запроса и отрисовки каждой следующей группы изображений
+//  Плавне прокручування сторінки після запиту та відтворення кожної наступної групи зображень
+
 function onPageScrolling(){ 
     const { height: cardHeight } = refs.containerDiv
         .firstElementChild.getBoundingClientRect();
